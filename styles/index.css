@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .sidebar-icons {
+        @apply flex md:justify-start items-center gap-3 justify-center md:mr-4 md:w-fit px-2 md:px-5 py-2 md:py-1.5 hover:bg-[#181818] cursor-pointer rounded-full
+    }
+
+    .post-icons {
+        @apply w-9 cursor-pointer p-2 rounded-full hover:bg-[#031018] disabled:cursor-default disabled:opacity-60 disabled:hover:bg-transparent
+    }
+
+    .btn-primary {
+        @apply bg-[#1d9bf0] rounded-full text-white font-bold cursor-pointer hover:bg-[#1d9cf0c3]
+    }
+}
+
+.glow {
+    box-shadow: 0 0 5px #fff;
+
+    &::after {
+        content: '';
+        width: 20px;
+        height: 20px;
+        background: black;
+        position: absolute;
+        left: calc(50% - 10px);
+        bottom: -9px;
+        rotate: 45deg;
+        box-shadow: 3px 3px 5px -2.5px #fff;
+    }
+}
+
+#picture {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+    cursor: pointer;
+
+    &::file-selector-button {
+        width: 1rem;
+        height: 1rem;
+        cursor: pointer;
+    }
+}
+
+.active-link {
+    color: #fff;
+    font-weight: bold;
+
+    &::after {
+        content: '';
+        width: 100%;
+        background-color: #1D9BF0;
+        height: 4px;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        border-radius: 999px;
+    }
+}
+
+html {
+    scrollbar-color: rgb(62, 65, 68) rgb(22, 24, 28);
+}
