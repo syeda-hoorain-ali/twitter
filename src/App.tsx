@@ -30,6 +30,7 @@ const App = () => {
 					<div className="posts">
 						{filteredPosts.map((post, index) => (
 							<Post key={index}
+								id={post.id}
 								message={post.message}
 								name={post.name}
 								logo={post.logo}

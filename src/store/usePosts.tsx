@@ -6,7 +6,7 @@ export type PostsProviderProps = {
 }
 
 export type Post = {
-    id?: string;
+    id: string;
     username: string;
     name: string;
     logo: string;
@@ -22,6 +22,8 @@ export type Post = {
 export type PostsContext = {
     posts: Post[];
     addNewPost: (post: Post) => void;
+    deletePost: (id: string) => void;
+    updatePost: (id: string, message: string) => void
 }
 
 export const postsContext = createContext<PostsContext | null>(null)
@@ -34,7 +36,21 @@ export const PostsProvider = ({ children }: PostsProviderProps) => {
         setPosts([post, ...posts])
     }
 
-    return <postsContext.Provider value={{ posts, addNewPost }}>
+    const deletePost = (id: string) => {
+        let updatedPosts = posts.filter(post => post.id !== id);
+        setPosts(updatedPosts)
+    }
+
+    const updatePost = (id: string, message: string) => {
+        let updatedPosts = posts.map(post => {
+            if (post.id !== id) return post;
+            post.message = message;
+            return post;
+        })
+        setPosts(updatedPosts)
+    }
+
+    return <postsContext.Provider value={{ posts, addNewPost, deletePost, updatePost }}>
         {children}
     </postsContext.Provider>
 }

@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Post } from "../store/usePosts";
+import EditPanel from "./EditPanel";
+import DeletePanel from "./DeletePanel";
 
 type Props = Omit<Post, 'filter' | 'createdAt'>;
 
 const NewPost = (props: Props) => {
   const [hideOptions, setHideOptions] = useState(true);
+  const [editPanel, setEditPanel] = useState(false);
+  const [deletePanel, setDeletePanel] = useState(false)
 
   const randomNumber = (max: number = 20) => {
     return (Math.random() * (max - 1) + 1).toFixed(2)
@@ -104,17 +108,34 @@ const NewPost = (props: Props) => {
           </div>
         </div>
 
+        {editPanel &&
+          <EditPanel
+            editPanel={editPanel}
+            setEditPanel={setEditPanel}
+            id={props.id}
+            message={props.message} />
+        }
+
+        {deletePanel &&
+          <DeletePanel
+            deletePanel={deletePanel}
+            setDeletePanel={setDeletePanel}
+            id={props.id} />
+        }
+
         <div onMouseLeave={() => setTimeout(() => setHideOptions(true), 500)}
           className={`${hideOptions && 'hidden'} options glow absolute w-1/2 bg-black right-0 rounded-lg px-1 py-1 z-50 after:content-[]`}>
 
           {/* my post options */}
           <ul className={`${props.myPost ? '' : 'hidden'} flex flex-col gap-1 pb-2`}>
-            <li className="flex gap-2 font-bold cursor-pointer hover:bg-[#031018] px-2 py-1 rounded-lg text-red-600">
+            <li onClick={() => setDeletePanel(true)}
+              className="flex gap-2 font-bold cursor-pointer hover:bg-[#031018] px-2 py-1 rounded-lg text-red-600">
               <img src="./svg/my-post-options/trash.svg" width={17} className="invert-0" alt="" />
               <span>Delete</span>
             </li>
 
-            <li className="flex gap-2 font-bold cursor-pointer hover:bg-[#031018] px-2 py-1 rounded-lg">
+            <li onClick={() => setEditPanel(true)}
+              className="flex gap-2 font-bold cursor-pointer hover:bg-[#031018] px-2 py-1 rounded-lg">
               <img src="./svg/my-post-options/edit.svg" width={17} className="invert" alt="" />
               <span>Edit</span>
             </li>

@@ -6,7 +6,7 @@ import GifPicker from 'gif-picker-react';
 
 const AddPosts = () => {
 
-  const { addNewPost } = usePosts();
+  const { addNewPost, posts } = usePosts();
   const [message, setMessage] = useState('');
   const [openEmoji, setOpenEmoji] = useState(false);
   const [openGif, setOpenGif] = useState(false)
@@ -16,7 +16,8 @@ const AddPosts = () => {
   const [gif, setGif] = useState<string | undefined>(); 
   const [poll, setPoll] = useState<string[] | undefined>();
 
-  const apiKey = import.meta.env.VITE_TENOR_API_KEY || '';
+  // const apiKey = import.meta.env.VITE_TENOR_API_KEY || '';
+  const apiKey = 'AIzaSyAmm7ASJQ5Ei12R-r0MfcsmqO5NNfoOUv8';
 
   enum Theme {
     DARK = "dark",
@@ -36,6 +37,7 @@ const AddPosts = () => {
 
   const addPost = () => {
     const newPost = {
+      id: String(posts.length + 1),
       name: user.name,
       username: user.username,
       logo: user.logo,
