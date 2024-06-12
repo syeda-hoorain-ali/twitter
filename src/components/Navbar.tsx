@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="top flex items-center p-3 sticky top-0 backdrop-blur-3xl opacity-80">
 
         <div className="for-you w-1/2 flex justify-center text-gray-400">
-          <Link className={`${(filter == null || filter == 'for-you') && 'active-link'} relative`} to='/?filter=for-you'>For you</Link>
+          <Link className={`${(filter == null || filter == 'for-you') && 'active-link'} relative`} to='?filter=for-you'>For you</Link>
         </div>
 
         <div className="following w-1/2 flex justify-center text-gray-400">

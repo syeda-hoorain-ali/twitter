@@ -16,8 +16,7 @@ const AddPosts = () => {
   const [gif, setGif] = useState<string | undefined>(); 
   const [poll, setPoll] = useState<string[] | undefined>();
 
-  // const apiKey = import.meta.env.VITE_TENOR_API_KEY || '';
-  const apiKey = 'AIzaSyAmm7ASJQ5Ei12R-r0MfcsmqO5NNfoOUv8';
+  const apiKey = import.meta.env.VITE_TENOR_API_KEY || '';
 
   enum Theme {
     DARK = "dark",
